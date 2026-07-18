@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeZen — Type with Precision</title>
+  <meta name="description" content="TypeZen is a premium typing practice platform. Sharpen your speed, accuracy, and focus." />
+
+  <!-- Fonts: Space Grotesk for display, Inter for UI, JetBrains Mono for typed/data text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!--
+    IMPORTANT: this path is relative — style.css must sit in the
+    SAME folder as this index.html file. No leading slash, no
+    subfolder prefix.
+  -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a href="#top" class="brand" aria-label="TypeZen home">
+        <span class="brand__mark">⌁</span>
+        <span class="brand__word">TypeZen</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="typing.html" class="nav-links__item">Practice</a>
+        <a href="#leaderboard" class="nav-links__item">Leaderboard</a>
+        <a href="#about" class="nav-links__item">About</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <button class="btn btn--primary btn--small" id="navStartBtn">Start Typing</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile dropdown -->
+    <nav class="nav-mobile" id="navMobile">
+      <a href="typing.html" class="nav-mobile__item">Practice</a>
+      <a href="#leaderboard" class="nav-mobile__item">Leaderboard</a>
+      <a href="#about" class="nav-mobile__item">About</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <p class="hero__eyebrow reveal">Precision typing, perfected</p>
+
+        <h1 class="hero__title reveal">
+          <span class="brand__mark hero__mark" aria-hidden="true">⌁</span>TypeZen
+        </h1>
+
+        <p class="hero__subtitle reveal">
+          Type with precision. Practice with purpose. Watch your words per
+          minute climb, one keystroke at a time.
+        </p>
+
+        <!-- Decorative self-typing demo line (not a functional typing engine) -->
+        <div class="demo-line reveal" aria-hidden="true">
+          <span class="demo-line__prompt">&gt;</span>
+          <span class="demo-line__text" id="demoText"></span
+          ><span class="demo-line__caret"></span>
+        </div>
+
+        <div class="hero__actions reveal">
+          <button class="btn btn--primary btn--large" id="heroStartBtn">
+            Start Typing
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <a href="#features" class="btn btn--ghost btn--large">Explore features</a>
+        </div>
+
+        <div class="hero__stats reveal" aria-hidden="true">
+          <div class="hero__stat">
+            <span class="hero__stat-value">120</span>
+            <span class="hero__stat-label">wpm top speed</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">99%</span>
+            <span class="hero__stat-label">peak accuracy</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">10k+</span>
+            <span class="hero__stat-label">tests typed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="features" id="features">
+      <div class="features__header reveal">
+        <p class="section-eyebrow">What you get</p>
+        <h2 class="section-title">Everything a serious typist needs</h2>
+      </div>
+
+      <div class="features__grid">
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon" style="--icon-accent: var(--accent)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 18V10M9 18V6M14 18V13M19 18V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Live WPM</h3>
+          <p class="feature-card__desc">
+            Watch your words-per-minute update in real time as you type, so you
+            always know exactly how fast you're moving.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon" style="--icon-accent: var(--accent-2)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Accuracy tracking</h3>
+          <p class="feature-card__desc">
+            Every keystroke is measured. See exactly where mistakes happen and
+            turn slip-ups into sharper muscle memory.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon" style="--icon-accent: var(--accent)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3.5" y="4.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.8" />
+              <path d="M7 20h10M9 17.5v2.5M15 17.5v2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Focused practice</h3>
+          <p class="feature-card__desc">
+            Distraction-free sessions built around timed drills, word counts,
+            and quotes — pick your mode and lock in.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon" style="--icon-accent: var(--accent-2)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 20V11M12 20V4M20 20v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              <circle cx="12" cy="4" r="1.6" fill="currentColor" />
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Leaderboard</h3>
+          <p class="feature-card__desc" id="leaderboard">
+            Climb the ranks against typists around the world and see how your
+            best runs stack up over time.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ CTA BAND ============ -->
+    <section class="cta-band" id="about">
+      <div class="cta-band__inner reveal">
+        <h2 class="cta-band__title">Ready to find your rhythm?</h2>
+        <p class="cta-band__subtitle">No sign-up needed to take your first test.</p>
+        <button class="btn btn--primary btn--large" id="ctaStartBtn">Start Typing</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <a href="#top" class="brand brand--footer">
+        <span class="brand__mark">⌁</span>
+        <span class="brand__word">TypeZen</span>
+      </a>
+      <p class="footer__copy">© 2026 TypeZen. Built for typists who care about the craft.</p>
+    </div>
+  </footer>
+
+  <!--
+    IMPORTANT: this path is relative — script.js must sit in the
+    SAME folder as this index.html file.
+  -->
+  <script src="script.js"></script>
+</body>
+</html>

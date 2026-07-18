@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeZen — Typing Test</title>
+  <meta name="description" content="Take a timed typing test on TypeZen and track your live WPM and accuracy." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Same stylesheet as the homepage — keeps theme + tokens identical -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ NAVIGATION (same as homepage) ============ -->
+  <header class="navbar is-scrolled" id="navbar">
+    <div class="navbar__inner">
+
+      <a href="index.html" class="brand" aria-label="TypeZen home">
+        <span class="brand__mark">⌁</span>
+        <span class="brand__word">TypeZen</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="typing.html" class="nav-links__item">Practice</a>
+        <a href="index.html#leaderboard" class="nav-links__item">Leaderboard</a>
+        <a href="index.html#about" class="nav-links__item">About</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <a href="index.html" class="btn btn--ghost btn--small">Home</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+
+    <nav class="nav-mobile" id="navMobile">
+      <a href="typing.html" class="nav-mobile__item">Practice</a>
+      <a href="index.html#leaderboard" class="nav-mobile__item">Leaderboard</a>
+      <a href="index.html#about" class="nav-mobile__item">About</a>
+      <a href="index.html" class="nav-mobile__item">Home</a>
+    </nav>
+  </header>
+
+  <main class="test-main">
+
+    <!-- ============ TIMER MODE SELECTOR ============ -->
+    <div class="mode-bar" id="modeBar">
+      <span class="mode-bar__label">time</span>
+      <button class="time-pill" data-time="15">15s</button>
+      <button class="time-pill is-active" data-time="30">30s</button>
+      <button class="time-pill" data-time="60">60s</button>
+    </div>
+
+    <!-- ============ LIVE STATS ============ -->
+    <div class="live-readout" id="liveReadout">
+      <div class="live-readout__item">
+        <span class="live-readout__value" id="liveTime">30</span>
+        <span class="live-readout__label">sec</span>
+      </div>
+      <div class="live-readout__item">
+        <span class="live-readout__value" id="liveWpm">0</span>
+        <span class="live-readout__label">wpm</span>
+      </div>
+      <div class="live-readout__item">
+        <span class="live-readout__value" id="liveAcc">100%</span>
+        <span class="live-readout__label">acc</span>
+      </div>
+    </div>
+
+    <!-- ============ TYPING FRAME ============ -->
+    <div class="typing-frame" id="typingFrame">
+      <span class="bracket bracket-tl"></span>
+      <span class="bracket bracket-tr"></span>
+
+      <div class="type-area" id="typeArea">
+        <div class="scroll-inner" id="scrollInner">
+          <div class="words-inner" id="wordsInner"></div>
+          <div class="caret" id="caret"></div>
+        </div>
+        <div class="focus-prompt" id="focusPrompt">click here or press any key to start</div>
+      </div>
+
+      <span class="bracket bracket-bl"></span>
+      <span class="bracket bracket-br"></span>
+    </div>
+
+    <!-- Hidden input captures all real keystrokes -->
+    <input
+      type="text"
+      id="hiddenInput"
+      class="hidden-input"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
+
+    <div class="restart-row">
+      <button class="restart-btn" id="restartBtn" title="Restart test" aria-label="Restart test">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20 11A8 8 0 1 0 18.9 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          <path d="M20 5v6h-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- ============ RESULTS PANEL (hidden until test ends) ============ -->
+    <section class="results" id="resultsPanel" hidden>
+      <div class="results__primary">
+        <div class="results__stat results__stat--main">
+          <span class="results__value" id="resWpm">0</span>
+          <span class="results__label">wpm</span>
+        </div>
+        <div class="results__stat">
+          <span class="results__value" id="resAcc">0%</span>
+          <span class="results__label">accuracy</span>
+        </div>
+      </div>
+
+      <div class="results__secondary">
+        <div class="results__mini">
+          <span class="results__mini-value" id="resRaw">0</span>
+          <span class="results__mini-label">raw wpm</span>
+        </div>
+        <div class="results__mini">
+          <span class="results__mini-value" id="resTime">0s</span>
+          <span class="results__mini-label">time</span>
+        </div>
+        <div class="results__mini">
+          <span class="results__mini-value" id="resChars">0/0/0</span>
+          <span class="results__mini-label">correct/wrong/extra</span>
+        </div>
+      </div>
+
+      <button class="btn btn--primary btn--large" id="nextBtn">Try again</button>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <a href="index.html" class="brand brand--footer">
+        <span class="brand__mark">⌁</span>
+        <span class="brand__word">TypeZen</span>
+      </a>
+      <p class="footer__copy">© 2026 TypeZen. Built for typists who care about the craft.</p>
+    </div>
+  </footer>
+
+  <!-- Homepage script (nav + mobile menu behavior is shared) -->
+  <script src="script.js"></script>
+  <!-- Typing engine, specific to this page -->
+  <script src="type.js"></script>
+</body>
+</html>
